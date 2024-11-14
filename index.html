@@ -946,44 +946,88 @@
           return;
         }
 
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
         let currentIndex = 0;
-        const totalSlides = sliderSlides.length;
 
-        function createDots() {
+        const createDots = () => {
           dotsContainer.innerHTML = "";
-          if (totalSlides === 0) return;
-
-          for (let i = 0; i < totalSlides; i++) {
+          sliderSlides.forEach((_, i) => {
             const dot = document.createElement("span");
             dot.classList.add("dot");
             if (i === 0) dot.classList.add("active");
             dot.addEventListener("click", () => goToSlide(i));
             dotsContainer.appendChild(dot);
-          }
-        }
-
-        function goToSlide(index) {
-          currentIndex = index;
-          const offset = index * 100;
-
-          sliderTrack.style.transform = `translateX(-${offset}%)`;
-
-          dotsContainer.querySelectorAll(".dot").forEach((dot, dotIndex) => {
-            dot.classList.toggle("active", dotIndex === index);
           });
-        }
+        };
+
+        const goToSlide = (index) => {
+          currentIndex = index;
+          updateDots();
+          setPositionByIndex();
+        };
+
+        const getPositionX = (event) => event.pageX;
+
+        const mouseDown = (event) => {
+          startPos = getPositionX(event);
+          isDragging = true;
+          sliderTrack.style.transition = "none";
+          sliderTrack.style.cursor = "grabbing";
+        };
+
+        const mouseMove = (event) => {
+          if (!isDragging) return;
+          const currentPosition = getPositionX(event);
+          currentTranslate = prevTranslate + currentPosition - startPos;
+          sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        };
+
+        const mouseUp = () => {
+          isDragging = false;
+          sliderTrack.style.transition = "transform 0.3s ease-out";
+          sliderTrack.style.cursor = "grab";
+          const movedBy = currentTranslate - prevTranslate;
+
+          if (movedBy < -100 && currentIndex < sliderSlides.length - 1)
+            currentIndex += 1;
+          if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+
+          goToSlide(currentIndex);
+        };
+
+        const setPositionByIndex = () => {
+          currentTranslate = currentIndex * -sliderSlides[0].offsetWidth;
+          prevTranslate = currentTranslate;
+          sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        };
+
+        const updateDots = () => {
+          dotsContainer.querySelectorAll(".dot").forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentIndex);
+          });
+        };
+
+        sliderSlides.forEach((slide) => {
+          const slideImage = slide.querySelector("img");
+          slideImage.addEventListener("dragstart", (e) => e.preventDefault());
+
+          slide.addEventListener("mousedown", mouseDown);
+          slide.addEventListener("mousemove", mouseMove);
+          slide.addEventListener("mouseup", mouseUp);
+          slide.addEventListener("mouseleave", mouseUp);
+        });
 
         createDots();
         goToSlide(0);
       }
 
-      // Initialize each slider with respective IDs
       setupSlider("slider1", "dots-desktop-1");
       setupSlider("slider1", "dots-mobile-1");
-
       setupSlider("slider2", "dots-desktop-2");
       setupSlider("slider2", "dots-mobile-2");
-
       setupSlider("slider3", "dots-desktop-3");
       setupSlider("slider3", "dots-mobile-3");
     </script>
