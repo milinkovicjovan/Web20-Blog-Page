@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+    .header-placeholder {
+      height: 50px;
+      background-color: #fff;
+    }
+    .hero-section {
+      background-image: url(assets/bg\ top.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 0 10px;
+      padding-left: 30px;
+    }
+
+    .hero-section__wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .hero-section__image-box {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+
+    .hero-section__image {
+      width: 100%;
+      height: 105%;
+      object-fit: cover;
+    }
+
+    .hero-text__box {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hero-text__heading {
+      color: #eab663;
+      font-size: 48px;
+    }
+    .hero-text__description {
+      color: #fff;
+      font-size: 30px;
+    }
+
+    .slider-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .slider-text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 70px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #e4e4e4;
+      margin-bottom: 20px;
+    }
+
+    .slider-text-mobile {
+      display: none;
+    }
+
+    .slider-text h2 {
+      font-weight: 500;
+    }
+
+    .slider-view-all {
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-view-all img {
+      margin-left: 5px;
+      width: 15px;
+    }
+
+    .slider-container {
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slider-slide {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .slider-item {
+      flex: 0 0 33.33%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .tags {
+      margin-bottom: 10px;
+    }
+
+    .tags span {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 16px;
+      font-size: 0.8em;
+      margin-right: 5px;
+    }
+
+    .slider-view-all p {
+      color: #e85a41;
+    }
+
+    .slider-view-all.mobile-only {
+      display: none;
+    }
+
+    .slider-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .dots-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dots-container.desktop-only {
+      display: block;
+    }
+
+    .dots-container.mobile-only {
+      display: none;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ff7f50;
+    }
+
+    .categories-section {
+      background-color: #141925;
+      padding: 70px 0;
+      margin-top: 70px;
+    }
+
+    .categories-section h2 {
+      font-size: 40px;
+      color: #fff;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .grid-container {
+      display: grid;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-top: 20px;
+      padding: 0 10px;
+      grid-template-columns: repeat(4, 1fr); /* 4 items per row on desktop */
+    }
+
+    .grid-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .grid-item img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .overlay-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      text-align: center;
+      width: 80%;
+    }
+
+    .footer-section {
+      background-image: url(assets/bg-bottom.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .footer-section__wrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      gap: 30px;
+    }
+
+    .footer-text__box-wrapper {
+      padding-top: 50px;
+    }
+
+    .footer-text-inputs {
+      display: flex;
+      align-items: end;
+      gap: 20px;
+      border-bottom: 1px solid #7e8180;
+      padding-bottom: 5px;
+    }
+    .footer-heading {
+      color: #fff;
+      line-height: 1;
+    }
+    .footer-heading-span {
+      color: #eab663;
+      font-size: 48px;
+    }
+
+    #name,
+    #email {
+      padding: 5px 5px 5px 20px;
+      border: 0;
+      border-radius: 30px;
+      margin-bottom: 10px;
+    }
+    .footer-submit-button {
+      background-color: #ff6b6b;
+      color: #fff;
+      border-radius: 30px;
+      padding: 5px 15px;
+      border: 0;
+    }
+    .footer-links-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 20px;
+      border-bottom: 1px solid #7e8180;
+    }
+    .footer-links-heading {
+      color: #eab663;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer-quick-links {
+      list-style: none;
+      color: #fff;
+      margin-bottom: 60px;
+    }
+
+    .footer-quick__links-list {
+      padding-bottom: 10px;
+    }
+
+    .footer-text {
+      color: #fff;
+    }
+
+    .footer-contact {
+      margin-top: 61px;
+      color: #fff;
+    }
+    .footer-copyright {
+      color: #fff;
+      margin-top: 10px;
+    }
+    .footer-copyright.desktop-only {
+      display: block;
+    }
+    .footer-copyright.mobile-only {
+      display: none;
+    }
+    @media (max-width: 1150px) {
+      .footer-section__wrapper {
+        flex-direction: column-reverse;
+        gap: 0;
+      }
+      .footer-text__box-wrapper {
+        background-color: #000;
+        padding: 30px 30px 0 30px;
+      }
+
+      .footer-text-inputs,
+      .footer-links-wrapper {
+        border-bottom: 0;
+      }
+      .footer-text-inputs {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .footer-quick__links-wrapper {
+        min-width: 225px;
+      }
+      .footer-quick-links {
+        margin-bottom: 0;
+      }
+      .footer-contact {
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+      .footer-copyright.desktop-only {
+        display: none;
+      }
+      .footer-copyright.mobile-only {
+        display: flex;
+        justify-content: center;
+      }
+      .footer-scientist {
+        max-height: 400px;
+        object-fit: contain;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 0;
+      }
+
+      .hero-section__image {
+        object-fit: contain;
+        max-height: 400px;
+      }
+      .hero-text__heading {
+        font-size: 30px;
+      }
+      .hero-text__description {
+        font-size: 20px;
+      }
+      .hero-text__box {
+        background-color: #000;
+        padding: 20px 30px 20px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-section__wrapper {
+        flex-direction: column;
+      }
+      .slider-item {
+        flex: 0 0 100%;
+        display: flex;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      .slider-text {
+        display: none;
+      }
+
+      .slider-text-mobile {
+        display: block;
+        margin-top: 30px;
+      }
+
+      .slider-text-mobile h2 {
+        font-weight: 500;
+      }
+
+      .slider-item img {
+        width: 50%;
+      }
+
+      .slider__tags-heading {
+        width: 50%;
+        padding-left: 25px;
+      }
+      .dots-container.desktop-only {
+        display: none;
+      }
+
+      .slider-view-all.mobile-only {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 50px;
+      }
+
+      .slider-track {
+        cursor: grab;
+      }
+
+      .slider-track:active {
+        cursor: grabbing;
+      }
+
+      .dots-container.mobile-only {
+        display: block;
+      }
+
+      .view-all-mobile {
+        display: flex;
+        align-items: center;
+      }
+
+      .categories-section h2 {
+        text-align: left;
+        padding-left: 30px;
+      }
+
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 30px 0 30px;
+      }
+      .footer-links-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  </style>
+  <body>
+    <section>
+      <div class="header-placeholder"></div>
+      <div class="hero-section">
+        <div class="hero-section__wrapper">
+          <div class="hero-text__box">
+            <div>
+              <h1 class="hero-text__heading">WEB20 RANKER</h1>
+              <h2 class="hero-text__description">
+                Scale Your Agency,<br />
+                Increase Rankings, and<br />
+                Expand Your SEO Knowledge
+              </h2>
+            </div>
+          </div>
+          <div class="hero-section__image-box">
+            <img class="hero-section__image" src="assets/Mad-Scientist-1.png" />
+          </div>
+        </div>
+      </div>
+      <div class="slider-section" id="slider1">
+        <div class="slider-text">
+          <h2>Recent Content</h2>
+          <div class="slider-view-all">
+            <p>View All</p>
+            <img src="assets/arrow-icon.png" />
+          </div>
+        </div>
+        <div class="slider-text-mobile">
+          <h2>Recent Content</h2>
+        </div>
+        <div class="slider-container">
+          <div class="slider">
+            <div class="slider-track">
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 1"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 2"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 3"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 4"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 5"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 6"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dots-container desktop-only" id="dots-desktop-1"></div>
+          <div class="slider-view-all mobile-only">
+            <div class="dots-container" id="dots-mobile-1"></div>
+            <div class="slider-view-all">
+              <p>View All</p>
+              <img src="assets/arrow-icon.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-section" id="slider2">
+        <div class="slider-text">
+          <h2>Ranking in Maps</h2>
+          <div class="slider-view-all">
+            <p>View All</p>
+            <img src="assets/arrow-icon.png" />
+          </div>
+        </div>
+        <div class="slider-text-mobile">
+          <h2>Ranking in Maps</h2>
+        </div>
+        <div class="slider-container">
+          <div class="slider">
+            <div class="slider-track">
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 1"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 2"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 3"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 4"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 5"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 6"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dots-container desktop-only" id="dots-desktop-2"></div>
+          <div class="slider-view-all mobile-only">
+            <div class="dots-container" id="dots-mobile-2"></div>
+            <div class="slider-view-all">
+              <p>View All</p>
+              <img src="assets/arrow-icon.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-section" id="slider3">
+        <div class="slider-text">
+          <h2>SEO Testing Insights</h2>
+          <div class="slider-view-all">
+            <p>View All</p>
+            <img src="assets/arrow-icon.png" />
+          </div>
+        </div>
+        <div class="slider-text-mobile">
+          <h2>SEO Testing Insights</h2>
+        </div>
+        <div class="slider-container">
+          <div class="slider">
+            <div class="slider-track">
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 1"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 2"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 3"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 4"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 5"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+                    alt="Content 6"
+                  />
+                  <div class="slider__tags-heading">
+                    <div class="tags">
+                      <span>News</span>
+                      <span>Tech</span>
+                    </div>
+                    <h3>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dots-container desktop-only" id="dots-desktop-3"></div>
+          <div class="slider-view-all mobile-only">
+            <div class="dots-container" id="dots-mobile-3"></div>
+            <div class="slider-view-all">
+              <p>View All</p>
+              <img src="assets/arrow-icon.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="categories-section">
+        <h2>ALL CATEGORIES</h2>
+        <div class="grid-container">
+          <div class="grid-item">
+            <img
+              src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+              alt="Category 1"
+            />
+            <div class="overlay-text">Category 1</div>
+          </div>
+          <div class="grid-item">
+            <img
+              src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+              alt="Category 2"
+            />
+            <div class="overlay-text">Category 2</div>
+          </div>
+          <div class="grid-item">
+            <img
+              src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+              alt="Category 3"
+            />
+            <div class="overlay-text">Category 3</div>
+          </div>
+          <div class="grid-item">
+            <img
+              src="assets/Screenshot 2024-11-13 at 2.10.07 PM.png"
+              alt="Category 4"
+            />
+            <div class="overlay-text">Category 4</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer-section">
+      <div class="footer-section__wrapper">
+        <div>
+          <p class="footer-copyright mobile-only">
+            COPYRIGHT © 2024 WEB20RANKER - ALL RIGHTS RESERVED
+          </p>
+        </div>
+        <img src="assets/Mad-Scientist-2.png" class="footer-scientist" />
+        <div class="footer-text__box-wrapper">
+          <div class="footer-text-inputs">
+            <h2 class="footer-heading">
+              Don't Miss the<br /><span class="footer-heading-span"
+                >INSIGHTS</span
+              >
+            </h2>
+            <div class="footer-form">
+              <input type="text" id="name" name="name" placeholder="yourname" />
+              <input type="email" id="email" placeholder="youremail" required />
+              <button class="footer-submit-button">Submit Now</button>
+            </div>
+          </div>
+          <div class="footer-links-wrapper">
+            <div>
+              <h2 class="footer-links-heading">WEB20RANKER</h2>
+              <p class="footer-text">
+                Scale Your Agency,<br />
+                Increase Rankings, and<br />
+                Expand Your SEO Knowledge
+              </p>
+            </div>
+            <div class="footer-quick__links-wrapper">
+              <h2 class="footer-links-heading">QUICK LINKS</h2>
+              <ul class="footer-quick-links">
+                <li class="footer-quick__links-list">Home</li>
+                <li class="footer-quick__links-list">About</li>
+                <li class="footer-quick__links-list">Service</li>
+                <li class="footer-quick__links-list">Page</li>
+                <li class="footer-quick__links-list">Contact</li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="footer-links-heading">CONTACT US</h2>
+              <div>
+                <p class="footer-text">
+                  Street Address Line 1<br />City State, Zip Code
+                </p>
+              </div>
+              <div class="footer-contact">
+                <p>Phone: 081 123 456 7890</p>
+                <p>Email: youremail@mail.com</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="footer-copyright desktop-only">
+              COPYRIGHT © 2024 WEB20RANKER - ALL RIGHTS RESERVED
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function setupSlider(sliderId, dotsId) {
+        const sliderTrack = document.querySelector(
+          `#${sliderId} .slider-track`
+        );
+        const sliderSlides = document.querySelectorAll(
+          `#${sliderId} .slider-item`
+        );
+        const dotsContainer = document.querySelector(`#${dotsId}`);
+
+        if (!sliderTrack || !dotsContainer) {
+          console.error(`Elements for slider ${sliderId} not found.`);
+          return;
+        }
+
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let currentIndex = 0;
+        let animationID = 0;
+
+        sliderSlides.forEach((slide) => {
+          slide.addEventListener("dragstart", (e) => e.preventDefault());
+          const images = slide.querySelectorAll("img");
+          images.forEach((img) => {
+            img.addEventListener("dragstart", (e) => e.preventDefault());
+          });
+        });
+
+        const createDots = () => {
+          dotsContainer.innerHTML = "";
+          const numDots = Math.ceil(sliderSlides.length / 3);
+          for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement("span");
+            dot.classList.add("dot");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => goToSlide(i * 3));
+            dotsContainer.appendChild(dot);
+          }
+        };
+
+        const goToSlide = (index) => {
+          currentIndex = index;
+          updateDots();
+          setPositionByIndex();
+        };
+
+        const getPositionX = (event) => {
+          return event.type.includes("mouse")
+            ? event.pageX
+            : event.touches[0].clientX;
+        };
+
+        const mouseDown = (event) => {
+          event.preventDefault();
+          startPos = getPositionX(event);
+          isDragging = true;
+          sliderTrack.style.cursor = "grabbing";
+          sliderTrack.style.transition = "none";
+          cancelAnimationFrame(animationID);
+        };
+
+        const mouseMove = (event) => {
+          if (!isDragging) return;
+          const currentPosition = getPositionX(event);
+          currentTranslate = prevTranslate + currentPosition - startPos;
+          setSliderPosition();
+        };
+
+        const mouseUp = () => {
+          isDragging = false;
+          sliderTrack.style.cursor = "grab";
+          const moveBy = currentTranslate - prevTranslate;
+          const slideWidth = sliderSlides[0].offsetWidth;
+
+          if (Math.abs(moveBy) > slideWidth * 0.3) {
+            if (moveBy < 0 && currentIndex < sliderSlides.length - 1) {
+              currentIndex++;
+            } else if (moveBy > 0 && currentIndex > 0) {
+              currentIndex--;
+            }
+          }
+
+          goToSlide(currentIndex);
+        };
+
+        const setSliderPosition = () => {
+          sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        };
+
+        const setPositionByIndex = () => {
+          const slideWidth = sliderSlides[0].offsetWidth;
+          currentTranslate = currentIndex * -slideWidth;
+          prevTranslate = currentTranslate;
+          sliderTrack.style.transition = "transform 0.3s ease-out";
+          setSliderPosition();
+        };
+
+        const updateDots = () => {
+          const dotIndex = Math.floor(currentIndex / 3);
+          dotsContainer.querySelectorAll(".dot").forEach((dot, i) => {
+            dot.classList.toggle("active", i === dotIndex);
+          });
+        };
+
+        sliderTrack.addEventListener("touchstart", mouseDown);
+        sliderTrack.addEventListener("touchmove", mouseMove);
+        sliderTrack.addEventListener("touchend", mouseUp);
+
+        sliderTrack.addEventListener("mousedown", mouseDown);
+        sliderTrack.addEventListener("mousemove", mouseMove);
+        sliderTrack.addEventListener("mouseup", mouseUp);
+        sliderTrack.addEventListener("mouseleave", mouseUp);
+
+        createDots();
+        goToSlide(0);
+
+        window.addEventListener("resize", () => {
+          setPositionByIndex();
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setupSlider("slider1", "dots-desktop-1");
+        setupSlider("slider1", "dots-mobile-1");
+        setupSlider("slider2", "dots-desktop-2");
+        setupSlider("slider2", "dots-mobile-2");
+        setupSlider("slider3", "dots-desktop-3");
+        setupSlider("slider3", "dots-mobile-3");
+      });
+    </script>
+  </body>
+</html>
