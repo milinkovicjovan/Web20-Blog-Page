@@ -961,6 +961,12 @@
         let currentIndex = 0;
         let animationID = 0;
 
+        const getMaxDragLimit = () => {
+          const slideWidth = sliderSlides[0].offsetWidth;
+          return -slideWidth * (sliderSlides.length - 3);
+        };
+
+        // Prevent default drag behaviors
         sliderSlides.forEach((slide) => {
           slide.addEventListener("dragstart", (e) => e.preventDefault());
           const images = slide.querySelectorAll("img");
@@ -982,7 +988,7 @@
         };
 
         const goToSlide = (index) => {
-          currentIndex = index;
+          currentIndex = Math.max(0, Math.min(index, sliderSlides.length - 3));
           updateDots();
           setPositionByIndex();
         };
@@ -1005,7 +1011,14 @@
         const mouseMove = (event) => {
           if (!isDragging) return;
           const currentPosition = getPositionX(event);
-          currentTranslate = prevTranslate + currentPosition - startPos;
+          const proposedTranslate = prevTranslate + currentPosition - startPos;
+
+          const maxDragLimit = getMaxDragLimit();
+          currentTranslate = Math.max(
+            maxDragLimit,
+            Math.min(0, proposedTranslate)
+          );
+
           setSliderPosition();
         };
 
@@ -1016,7 +1029,7 @@
           const slideWidth = sliderSlides[0].offsetWidth;
 
           if (Math.abs(moveBy) > slideWidth * 0.3) {
-            if (moveBy < 0 && currentIndex < sliderSlides.length - 1) {
+            if (moveBy < 0 && currentIndex < sliderSlides.length - 3) {
               currentIndex++;
             } else if (moveBy > 0 && currentIndex > 0) {
               currentIndex--;
@@ -1033,6 +1046,13 @@
         const setPositionByIndex = () => {
           const slideWidth = sliderSlides[0].offsetWidth;
           currentTranslate = currentIndex * -slideWidth;
+
+          const maxDragLimit = getMaxDragLimit();
+          currentTranslate = Math.max(
+            maxDragLimit,
+            Math.min(0, currentTranslate)
+          );
+
           prevTranslate = currentTranslate;
           sliderTrack.style.transition = "transform 0.3s ease-out";
           setSliderPosition();
